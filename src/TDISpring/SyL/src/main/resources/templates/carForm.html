@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html   
+        lang="es"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}" >
+<head>
+    <title>Agregar Producto</title>
+    
+</head>
+<body>
+    <div layout:fragment="main-header">
+        <br>
+        <h1 class="mt-5 text-center"><strong>Agregar producto</strong></h1>
+    </div>
+    <div layout:fragment="main-content">
+        <article>
+            <div class="row">
+                <div class="col-md-5 mx-auto my-2 col-sm-8">
+                    <div class="card border-secundary">
+                        <div class="card-body">
+                            <form th:action="@{checkIn}" method="POST" class="form-horizontal">
+                                <fieldset>
+                                
+                                <!-- Form Name -->
+                                <legend class="fs-7">Estacionamiento</legend>
+                                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label" for="brand">Marca</label>  
+                                  <div class="col-md-4">
+                                  <input id="brand" name="brand" type="text" placeholder="Ejemplo: Ford" class="form-control input-md">
+                                  </div>
+                                </div>
+                                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label" for="model">Modelo</label>  
+                                  <div class="col-md-4">
+                                  <input id="model" name="model" type="text" placeholder="Ejemplo:Tacoma" class="form-control input-md">
+                                  </div>
+                                </div>
+                                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-md-4 control-label" for="color">Color</label>  
+                                  <div class="col-md-4">
+                                  <input id="color" name="color" type="text" placeholder="Ejemplo: rojo" class="form-control input-md">
+                                  </div>
+                                </div>
+                                <input class="bg-success" type="submit" value="Imprimir" >
+                                </fieldset>
+                            </form>
+
+                            <a th:href="@{inventario}" class="btn btn-dark">Inventario</a>
+                        </div>
+                        
+
+                        <div class="card-body">
+                            <form th:action="@{/verificar}" method="POST" class="form-horizontal">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="id">Codigo de barras</label>  
+                                        <div class="col-md-4">
+                                            <input id="id" name="id" type="number" placeholder="Codigo de barras" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <input class="bg-success" type="submit" value="Verificar" >
+                                </fieldset>
+                            </form>
+                            <div th:attr="style=${verifiedCar}?'':'display: none'">
+                                <p  th:text="${verifiedCar}?:''">Confirmacion</p>
+                            </div>
+                            <img src="/img/url.png" alt="QR Code for remote page">
+                            <a href="127.0.1.1:8080/" th:text="${autolink}?:''">https://127.0.1.1:8080/</a>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+            <br>
+        </article>
+    </div>
+</body>
+
+</html>

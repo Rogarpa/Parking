@@ -1,0 +1,50 @@
+<!doctype html>
+<html   
+    lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}"
+>
+<head>
+    <title >Inventario</title>
+</head>
+    <body>
+        <div layout:fragment="main-header">
+            <br>
+            <h1 class="mt-5"><strong>Inventario</strong> </h1>
+        </div>
+        <div layout:fragment="main-content">
+            <article>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Id del carro</th>
+                                <th>Fecha</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Color</th>
+                                <th>Estado estacionado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <tr th:each="Carro:${carros}">
+                                <td th:text="${Carro.id}"></td>
+                                <td th:text="${Carro.date}"></td>
+                                <td th:text="${Carro.brand}"></td>
+                                <td th:text="${Carro.model}"></td>
+                                <td th:text="${Carro.color}"></td>
+                                <td th:text="${Carro.parked==true?'estacionado':'no estacionado'}"></td>
+                                <td><a th:href="@{/eliminar/{id}(id=${Carro.id})}" class="btn btn-danger">Eliminar</a></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table> 
+                </div>
+                <a th:href="@{/}" class="btn btn-success">Agregar Carro</a>
+                <a th:href="@{reiniciarInventario}" class="btn btn-success">Reiniciar Inventario</a>
+                    <br>
+                    <br>
+            </article>
+    </body>
+</html>
