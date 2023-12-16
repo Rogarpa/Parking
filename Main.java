@@ -7,12 +7,13 @@ public class Main {
         System.out.println(printerService.getPrinters());
 
         //print some stuff. Change the printer name to your thermal printer name.
-        // printerService.printString("EPSON-TM-T20II", "\n\n testing testing 1 2 3eeeee \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        printerService.printString("POS-80", "\n\n testing \n\n testing");
 
         // cut that paper!
         // byte[] cutP = new byte[] { 0x1d, 'V', 1 };
+        // byte[] cutP = new byte[] { 'O', 'V', 'O'};
 
-        // printerService.printBytes("EPSON-TM-T20II", cutP);
+        // printerService.printBytes("POS-80", cutP);
 
     }
 
