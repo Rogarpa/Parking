@@ -23,8 +23,6 @@ public class CarRepository{
 
     public void initDefaultCars() {
         logger.info("*********** INIT DEFAULT");
-        this.list.add(new Car(13));
-        this.list.add(new Car(14));
     }
 
     public int count() {

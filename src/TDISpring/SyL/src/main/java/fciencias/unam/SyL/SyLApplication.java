@@ -19,11 +19,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-
-
-
-import fciencias.unam.SyL.utils.PrinterService;
 import groovyjarjarasm.asm.util.Printer;
+import fciencias.unam.SyL.service.PrinterService;
 import fciencias.unam.SyL.service.PrintingService;
 @SpringBootApplication
 public class SyLApplication {
@@ -48,18 +45,16 @@ public class SyLApplication {
 			// 	System.out.println(s.next());
 			// }
 
-			// String[] beanNames = ctx.getBeanDefinitionNames();
-			// Arrays.sort(beanNames);
-			// for (String beanName : beanNames) {
-			// 	System.out.println(beanName);
-			// }
-
-			// PrinterService printerService = new PrinterService();
-			// System.out.println(printerService.getPrinters());
-			String margin = "0123456789012345678901234567890123456789";
-			ps.printString("POS-80", margin);
 			// PrintingService p = new PrintingService();
 			// p.getCars();
+			
+
+
+			
+
+			// String margin = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+			// ps.printString("POS-80", margin);
+			// ps.printBytes("POS-80", new byte[] { 'O', 'V', 'O'});
 		};
 	}
 

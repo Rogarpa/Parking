@@ -1,5 +1,7 @@
 package fciencias.unam.SyL.service;
 
+import org.springframework.stereotype.Service;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +20,7 @@ import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 
+@Service
 public class PrinterService implements Printable {
 
     public List<String> getPrinters(){
