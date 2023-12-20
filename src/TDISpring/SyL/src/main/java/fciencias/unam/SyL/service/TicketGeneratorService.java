@@ -16,6 +16,8 @@ public class TicketGeneratorService{
                 Marca: {brand} \n                               
                 Modelo: {model} \n                               
                 Color: {color} \n              
+                No nos hacemos responsable por daño o 
+                robo total de los automoviles
             ====================================== \n
             \n
             \n
@@ -29,11 +31,12 @@ public class TicketGeneratorService{
     ){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        ticketTemplate = ticketTemplate.replace("{localDate}", dtf.format(now).toString());
-        ticketTemplate = ticketTemplate.replace("{brand}", brand);
-        ticketTemplate = ticketTemplate.replace("{model}", model);
-        ticketTemplate = ticketTemplate.replace("{color}", color);
-        return ticketTemplate;
+        String ticketFormatted = ticketTemplate;
+        ticketFormatted = ticketFormatted.replace("{localDate}", dtf.format(now).toString());
+        ticketFormatted = ticketFormatted.replace("{brand}", brand);
+        ticketFormatted = ticketFormatted.replace("{model}", model);
+        ticketFormatted = ticketFormatted.replace("{color}", color);
+        return ticketFormatted;
     }
 
     

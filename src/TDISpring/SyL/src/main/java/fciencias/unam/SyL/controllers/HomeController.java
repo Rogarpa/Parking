@@ -18,7 +18,7 @@ import fciencias.unam.SyL.service.TicketGeneratorService;
 
 @Controller
 @RequestMapping("/")
-public class HomeControllers {
+public class HomeController {
 
     @Autowired
 	PrinterService printerService;
@@ -39,7 +39,7 @@ public class HomeControllers {
     }
 
     @PostMapping("/printTicket")
-    public String printTicket(@ModelAttribute Car car){
+    public String printTicket(Car car){
         String ticket = ticketGeneratorService.generateTicket(car.brand, car.model, car.color);
         printerService.printString("POS-80", ticket);
         // Paper paper = new Paper();
@@ -48,6 +48,6 @@ public class HomeControllers {
         // pf.setPaper(paper);
         // printerService.print(null, pf, 0)
         return "redirect:print";
-    }        
+    }
 
 }
