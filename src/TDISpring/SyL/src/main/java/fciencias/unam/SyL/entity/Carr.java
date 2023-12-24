@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="car")
-public class Car{
+@Table(name="carr")
+public class Carr{
     
     @Id
     @Column(name = "id", unique=true)

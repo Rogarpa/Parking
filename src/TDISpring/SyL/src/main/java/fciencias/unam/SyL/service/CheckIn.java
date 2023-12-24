@@ -29,6 +29,7 @@ public class CheckIn{
     PrinterService printerService;
 
     public String checkIn(Car car){
+        if(car == null)
         car.setParked(true);
         Car savedCar = carService.save(car);
         System.out.print(savedCar);

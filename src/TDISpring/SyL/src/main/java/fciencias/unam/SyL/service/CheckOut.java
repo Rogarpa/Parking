@@ -1,6 +1,7 @@
 package fciencias.unam.SyL.service;
 
 import java.time.format.DateTimeFormatter;
+import  java.lang.IllegalArgumentException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,21 +18,23 @@ public class CheckOut {
 
     public Object checkOut(long id){
         Car verifiedCar = carService.findById(id);
-        verifiedCar.setParked(false);
-        carService.update(verifiedCar);
         Object carDTO;
-        if(verifiedCar == null){
+        if(verifiedCar == null)
             carDTO = "Carro no encontrado";
-        }else{
+        else{
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             carDTO = new CarDTO(
-                                    verifiedCar.getId(),
-                                    dtf.format(verifiedCar.getDate()),
-                                    verifiedCar.getModel(),
-                                    verifiedCar.getBrand(),
-                                    verifiedCar.getColor()
-                                );
-        }
+                verifiedCar.getId(),
+                dtf.format(verifiedCar.getDate()),
+                verifiedCar.getModel(),
+                verifiedCar.getBrand(),
+                verifiedCar.getColor()
+                );
+            }
+
+        
+            verifiedCar.setParked(false);
+            carService.update(verifiedCar);
         return carDTO;
 
     }

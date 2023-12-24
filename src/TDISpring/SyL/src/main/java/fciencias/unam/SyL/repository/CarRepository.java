@@ -41,7 +41,7 @@ public class CarRepository{
 
     public Car findById(long id){
         for (Car car : list) {
-            if (car.getId() == id) {
+            if (car.getId().longValue() == id) {
                 return car;
             }
         }
@@ -52,7 +52,7 @@ public class CarRepository{
         if(car == null){
             throw new IllegalArgumentException("No se pueden guardar car nulos");
         }
-        car.setId(++idCounter);
+        car.setId(new Long(++idCounter));
         car.setDate(LocalDateTime.now());
         list.add(car);
         return car;
@@ -60,7 +60,7 @@ public class CarRepository{
 
     public boolean delete(long id){
         for (Car car : list) {
-            if (car.getId() == id) {
+            if (car.getId().longValue() == id) {
                 list.remove(car);
                 return true;
             }
