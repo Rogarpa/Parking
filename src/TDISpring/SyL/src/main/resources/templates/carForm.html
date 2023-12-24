@@ -68,7 +68,9 @@
                                     <input class="bg-success" type="submit" value="Verificar" >
                                 </fieldset>
                             </form>
-                            <p  th:text="${verifiedCar}?:'NULO'">Confirmacion</p>
+                            <div th:attr="style=${verifiedCar}?'':'display: none'">
+                                <p  th:text="${verifiedCar}?:''">Confirmacion</p>
+                            </div>
                         </div>
 
                     </div>

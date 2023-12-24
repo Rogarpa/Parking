@@ -29,14 +29,11 @@ public class CarService{
         Optional<Car> finded = carRepositoryy.findById(new Long(id));
         if(finded.isEmpty())
             return null;
-        return carRepositoryy.findById(new Long(id)).get();
-        // return Optional.of(carRepositoryy.findById(new Long(id))).orElseThrow(null);
-        // return carRepository.findById(id);
+        return finded.get();
     }
 
     public Car save(Car car){
         return carRepositoryy.save(new Car(new Long(0),java.time.LocalDateTime.now(),"","","",true));
-        // return carRepository.save(car);
     }
 
     public boolean delete(long id){
@@ -45,6 +42,5 @@ public class CarService{
     }
     public Car update(Car car){
         return carRepositoryy.save(car);
-        // return carRepository.update(car);
     }
 }

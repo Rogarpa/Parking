@@ -65,8 +65,11 @@ public class HomeController {
 
     @PostMapping("/verificar")
     public String verificar(Car car, Model model){
-        Object check = checkOut.checkOut(car.getId());
-        model.addAttribute("verifiedCar", check);
+        Long id = car.getId();
+        if(id != null){
+            Object check = checkOut.checkOut(id);
+            model.addAttribute("verifiedCar", check);
+        }
         return "carForm";
     }
     

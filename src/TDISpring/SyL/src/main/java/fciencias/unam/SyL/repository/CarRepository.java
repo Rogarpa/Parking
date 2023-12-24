@@ -39,14 +39,14 @@ public class CarRepository{
         return this.list;
     }
 
-    public Car findById(long id){
-        for (Car car : list) {
-            if (car.getId().longValue() == id) {
-                return car;
-            }
-        }
-        return null;
-    }
+    // public Car findById(long id){
+    //     for (Car car : list) {
+    //         if (car.getId().longValue() == id) {
+    //             return car;
+    //         }
+    //     }
+    //     return null;
+    // }
 
     public Car save(Car car){
         if(car == null){
@@ -58,23 +58,23 @@ public class CarRepository{
         return car;
     }
 
-    public boolean delete(long id){
-        for (Car car : list) {
-            if (car.getId().longValue() == id) {
-                list.remove(car);
-                return true;
-            }
-        }
-        return false;
-    }
+    // public boolean delete(long id){
+    //     for (Car car : list) {
+    //         if (car.getId().longValue() == id) {
+    //             list.remove(car);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public Car update(Car update){
-        Car toUpdate = findById(update.getId());
-        toUpdate.setBrand(update.getBrand());
-        toUpdate.setColor(update.getColor());
-        toUpdate.setDate(update.getDate());
-        toUpdate.setModel(update.getModel());
-        toUpdate.setParked(update.getParked());
-        return toUpdate;
-    }
+    // public Car update(Car update){
+    //     Car toUpdate = findById(update.getId());
+    //     toUpdate.setBrand(update.getBrand());
+    //     toUpdate.setColor(update.getColor());
+    //     toUpdate.setDate(update.getDate());
+    //     toUpdate.setModel(update.getModel());
+    //     toUpdate.setParked(update.getParked());
+    //     return toUpdate;
+    // }
 }

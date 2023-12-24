@@ -30,11 +30,11 @@ public class CheckOut {
                 verifiedCar.getBrand(),
                 verifiedCar.getColor()
                 );
+            
+                verifiedCar.setParked(false);
+                carService.update(verifiedCar);
             }
 
-        
-            verifiedCar.setParked(false);
-            carService.update(verifiedCar);
         return carDTO;
 
     }
