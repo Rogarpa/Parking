@@ -15,4 +15,9 @@ public class Car{
     public String model;
     public String brand;
     public String color;
+    public boolean parked;
+
+    public boolean getParked(){
+        return this.parked;
+    }
 }

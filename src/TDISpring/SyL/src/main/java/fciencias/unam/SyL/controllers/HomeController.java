@@ -15,6 +15,7 @@ import fciencias.unam.SyL.entity.CarDTO;
 import fciencias.unam.SyL.service.CarService;
 import fciencias.unam.SyL.service.PrinterService;
 import fciencias.unam.SyL.service.CheckIn;
+import fciencias.unam.SyL.service.CheckOut;
 import fciencias.unam.SyL.service.TicketGeneratorService;
 
 @Controller
@@ -26,6 +27,9 @@ public class HomeController {
 
     @Autowired
     CheckIn checkIn;
+
+    @Autowired
+    CheckOut checkOut;
 
 
     @Autowired
@@ -52,25 +56,16 @@ public class HomeController {
     }
 
     @PostMapping("/checkIn")
-// 
-    @ResponseBody
     public String checkIn(Car car){
-        return checkIn.checkIn(car);
-        // return "redirect:/agregarCarro"
+        checkIn.checkIn(car);
+        return "redirect:/agregarCarro";
     }
+
 
     @PostMapping("/verificar")
     public String verificar(Car car, Model model){
-        Car verifiedCar = carService.findById(car.getId());
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        CarDTO carDTO = new CarDTO(
-                                verifiedCar.getId(),
-                                dtf.format(verifiedCar.getDate()),
-                                verifiedCar.getModel(),
-                                verifiedCar.getBrand(),
-                                verifiedCar.getColor()
-                            );
-        model.addAttribute("verifiedCar", carDTO);
+        Object check = checkOut.checkOut(car.getId());
+        model.addAttribute("verifiedCar", check);
         return "carForm";
     }
 

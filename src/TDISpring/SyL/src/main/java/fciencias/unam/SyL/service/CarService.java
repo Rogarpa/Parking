@@ -25,4 +25,11 @@ public class CarService{
     public Car save(Car car){
         return carRepository.save(car);
     }
+
+    public boolean delete(long id){
+        return carRepository.delete(id);
+    }
+    public Car update(Car car){
+        return carRepository.update(car);
+    }
 }

@@ -16,11 +16,13 @@ import  java.lang.IllegalArgumentException;
 public class CarRepository{
 
     private final List<Car> list = new ArrayList<>();
+    int idCounter;
 
     private final Logger logger = LogManager.getLogger(CarRepository.class);
 
     public CarRepository() {
         logger.info("*********** CONSTRUCTUR: SemestreRepository");
+        idCounter = 0;
         initDefaultCars();
     }
 
@@ -50,9 +52,29 @@ public class CarRepository{
         if(car == null){
             throw new IllegalArgumentException("No se pueden guardar car nulos");
         }
-        car.setId(count()+1);
+        car.setId(++idCounter);
         car.setDate(LocalDateTime.now());
         list.add(car);
         return car;
+    }
+
+    public boolean delete(long id){
+        for (Car car : list) {
+            if (car.getId() == id) {
+                list.remove(car);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Car update(Car update){
+        Car toUpdate = findById(update.getId());
+        toUpdate.setBrand(update.getBrand());
+        toUpdate.setColor(update.getColor());
+        toUpdate.setDate(update.getDate());
+        toUpdate.setModel(update.getModel());
+        toUpdate.setParked(update.getParked());
+        return toUpdate;
     }
 }

@@ -21,12 +21,20 @@
                             <tr>
                                 <th>Id del carro</th>
                                 <th>Fecha</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Color</th>
+                                <th>Estado estacionado</th>
                             </tr>
                         </thead>
                         <tbody>
                            <tr th:each="Carro:${carros}">
                                 <td th:text="${Carro.id}"></td>
                                 <td th:text="${Carro.date}"></td>
+                                <td th:text="${Carro.brand}"></td>
+                                <td th:text="${Carro.model}"></td>
+                                <td th:text="${Carro.color}"></td>
+                                <td th:text="${Carro.parked==true?'estacionado':'no estacionado'}"></td>
                             </tr>
                             
                         </tbody>
