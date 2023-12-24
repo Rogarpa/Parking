@@ -19,9 +19,7 @@
                 <div class="col-md-5 mx-auto my-2 col-sm-8">
                     <div class="card border-secundary">
                         <div class="card-body">
-                            
-
-                            <form th:action="@{/printTicket}" method="POST" class="form-horizontal">
+                            <form th:action="@{checkIn}" method="POST" class="form-horizontal">
                                 <fieldset>
                                 
                                 <!-- Form Name -->
@@ -52,9 +50,27 @@
                                 </div>
                                 <input class="bg-success" type="submit" value="Imprimir" >
                                 </fieldset>
-                                </form>
-                                
+                            </form>
+
+                            <a th:href="@{inventario}" class="btn btn-dark">Inventario</a>
                         </div>
+                        
+
+                        <div class="card-body">
+                            <form th:action="@{/verificar}" method="POST" class="form-horizontal">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="id">Codigo de barras</label>  
+                                        <div class="col-md-4">
+                                            <input id="id" name="id" type="number" placeholder="Codigo de barras" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <input class="bg-success" type="submit" value="Verificar" >
+                                </fieldset>
+                            </form>
+                            <p  th:text="${verifiedCar}?:'NULO'">Safooo</p>
+                        </div>
+
                     </div>
                 </div>
                 

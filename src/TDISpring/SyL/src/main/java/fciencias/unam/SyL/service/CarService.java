@@ -10,14 +10,19 @@ import fciencias.unam.SyL.repository.CarRepository;
 import fciencias.unam.SyL.entity.Car;
 
 @Service
-public class PrintingService{
+public class CarService{
 	@Autowired
     private CarRepository carRepository;
     
-    public PrintingService(){
-        
-    }
-    public List<Car> getCars() {
+    public List<Car> getAllCars() {
         return carRepository.getAllCars();
+    }
+
+    public Car findById(long id){
+        return carRepository.findById(id);
+    }
+
+    public Car save(Car car){
+        return carRepository.save(car);
     }
 }

@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 import fciencias.unam.SyL.entity.Car;
+
+
+import java.time.LocalDateTime;
+import  java.lang.IllegalArgumentException;
 @Repository
 public class CarRepository{
 
@@ -33,5 +37,22 @@ public class CarRepository{
         return this.list;
     }
 
-    
+    public Car findById(long id){
+        for (Car car : list) {
+            if (car.getId() == id) {
+                return car;
+            }
+        }
+        return null;
+    }
+
+    public Car save(Car car){
+        if(car == null){
+            throw new IllegalArgumentException("No se pueden guardar car nulos");
+        }
+        car.setId(count()+1);
+        car.setDate(LocalDateTime.now());
+        list.add(car);
+        return car;
+    }
 }

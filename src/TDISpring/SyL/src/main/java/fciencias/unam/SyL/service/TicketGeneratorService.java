@@ -4,25 +4,22 @@ package fciencias.unam.SyL.service;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import fciencias.unam.SyL.entity.Car;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
 public class TicketGeneratorService{
     String ticketTemplate = """
-            ====================================== \n
                 Recibo Estacionamiento "Duque" \n
-                        {localDate} \n                                   
-                Marca: {brand} \n                               
-                Modelo: {model} \n                               
-                Color: {color} \n              
+                        {id}\n
+                      {localDate} \n                                   
+            Marca: {brand} \n                               
+            Modelo: {model} \n                               
+            Color: {color} \n              
                 No nos hacemos responsable por daño o 
                 robo total de los automoviles
-            ====================================== \n
-            \n
-            \n
-            \n
-            \u001dV1
             """;
     public String generateTicket(
             String brand,
@@ -39,5 +36,15 @@ public class TicketGeneratorService{
         return ticketFormatted;
     }
 
+    public String generateTicket(Car car){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String ticketFormatted = ticketTemplate;
+        ticketFormatted = ticketFormatted.replace("{id}", String.valueOf(car.getId()));
+        ticketFormatted = ticketFormatted.replace("{localDate}", dtf.format(car.getDate()).toString());
+        ticketFormatted = ticketFormatted.replace("{brand}", car.getBrand());
+        ticketFormatted = ticketFormatted.replace("{model}", car.getModel());
+        ticketFormatted = ticketFormatted.replace("{color}", car.getColor());
+        return ticketFormatted;
+    }
     
 }

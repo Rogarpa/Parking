@@ -1,7 +1,5 @@
 package fciencias.unam.SyL.entity;
 
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -9,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Car{
+public class CarDTO{
     public long id;
-    public LocalDateTime date;
+    public String date;
     public String model;
     public String brand;
     public String color;
