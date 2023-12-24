@@ -35,12 +35,13 @@
                                 <td th:text="${Carro.model}"></td>
                                 <td th:text="${Carro.color}"></td>
                                 <td th:text="${Carro.parked==true?'estacionado':'no estacionado'}"></td>
+                                <td><a th:href="@{/eliminar/{id}(id=${Carro.id})}" class="btn btn-danger">Eliminar</a></td>
                             </tr>
                             
                         </tbody>
                     </table> 
                 </div>
-                    <a th:href="@{agregarCarro}" class="btn btn-dark">Agregar Carro</a>
+                    <a th:href="@{agregarCarro}" class="btn btn-success">Agregar Carro</a>
                     <br>
                     <br>
             </article>

@@ -40,7 +40,8 @@ public class CarService{
     }
 
     public boolean delete(long id){
-        return carRepository.delete(id);
+        carRepositoryy.deleteById(new Long(id));
+        return true;
     }
     public Car update(Car car){
         return carRepositoryy.save(car);

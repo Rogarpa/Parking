@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,6 +69,13 @@ public class HomeController {
         model.addAttribute("verifiedCar", check);
         return "carForm";
     }
+    
+    @GetMapping("/eliminar/{id}")
+    public String delete(@PathVariable Long id) {
+        carService.delete(id);
+        return "redirect:/inventario";
+    }
+
 
     @GetMapping("/test")
     @ResponseBody
