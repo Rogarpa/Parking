@@ -1,5 +1,6 @@
 package fciencias.unam.SyL.controllers;
 
+import java.net.InetAddress;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,14 +90,7 @@ public class HomeController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        
-        long l = (long)Math.pow(2,63)-1;
-        System.out.println(String.valueOf(l));
-        while(l > 0){
-            l++;
-            System.out.println(String.valueOf(l));
-        }
-        return "";
+        return (InetAddress.getLocalHost()).toString();
     }
         
 }
