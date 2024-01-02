@@ -79,6 +79,12 @@ public class HomeController {
         return "redirect:/inventario";
     }
 
+    @GetMapping("/reiniciarInventario")
+    public String reiniciarInventario() {
+        carService.deleteAll();
+        return "redirect:/inventario";
+    }
+
 
     @GetMapping("/test")
     @ResponseBody

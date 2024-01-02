@@ -45,4 +45,8 @@ public class CarService{
     public Car update(Car car){
         return carRepositoryy.save(car);
     }
+    public boolean deleteAll(){
+        carRepositoryy.truncateCarDB();
+        return true;
+    }
 }

@@ -29,14 +29,18 @@ public class CheckIn{
     PrinterService printerService;
 
     public String checkIn(Car car){
-        if(car == null)
         car.setParked(true);
         Car savedCar = carService.save(car);
         System.out.print(savedCar);
         String ticket = ticketGeneratorService.generateTicket(savedCar);
-        // printerService.printString("POS-80", ticket);
-        
-        PrintService printService = PrinterOutputStream.getPrintServiceByName("POS-80");
+        PrintService printService;
+        try{
+            printService = PrinterOutputStream.getPrintServiceByName("POS-80");
+        }catch(Exception e){
+            System.out.print("Impresora no encontrada");
+            return "";
+        }
+        printerService.printString("POS-80", ticket);
         EscPos escpos;
         try {
             escpos = new EscPos(new PrinterOutputStream(printService));
@@ -66,7 +70,6 @@ public class CheckIn{
             System.out.print("Fallo");
         }
         
-        
-        return ticket;
+        return "";
     }
 }
