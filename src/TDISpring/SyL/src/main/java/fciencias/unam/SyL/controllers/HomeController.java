@@ -46,7 +46,7 @@ public class HomeController {
         printerService.printBytes("POS-80", new byte[] { 0x1d, 'V', 1 });
         return "cortado";
     }
-    @GetMapping("/agregarCarro")
+    @GetMapping("/")
     public String agregarCarro(){
         return "carForm";
     }
@@ -60,7 +60,7 @@ public class HomeController {
     @PostMapping("/checkIn")
     public String checkIn(Car car){
         checkIn.checkIn(car);
-        return "redirect:/agregarCarro";
+        return "redirect:/";
     }
 
 
@@ -90,7 +90,15 @@ public class HomeController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        return (InetAddress.getLocalHost()).toString();
+        String url = "";
+        try{
+            InetAddress myIp = InetAddress.getLocalHost();
+            url = url + myIp.getHostAddress();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        url = url + ":8080/";
+        return url;
     }
         
 }
