@@ -33,7 +33,9 @@ public class CarService{
     }
 
     public Car save(Car car){
-        return carRepositoryy.save(new Car(new Long(0),java.time.LocalDateTime.now(),"","","",true));
+        car.setDate(java.time.LocalDateTime.now());
+        carRepositoryy.save(car);
+        return car;
     }
 
     public boolean delete(long id){
