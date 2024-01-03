@@ -1,7 +1,6 @@
 package fciencias.unam.SyL.service;
 
 
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +27,6 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;  
 
 
-
-
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +38,8 @@ import fciencias.unam.SyL.entity.Carr;
 import java.io.File;
 import java.io.IOException;
 import java.lang.RuntimeException;
-
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
@@ -83,37 +80,22 @@ public class CarService{
         return true;
     }
     
-    public static void generateQRcode(String data, String path, String charset, Map map, int h, int w) throws WriterException, IOException{
-        //the BitMatrix class represents the 2D matrix of bits  
-        //MultiFormatWriter is a factory class that finds the appropriate Writer subclass for the BarcodeFormat requested and encodes the barcode with the supplied contents.  
-        try{
-            BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);
-
-            MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));  
+    public String getHostLink(){
+        String url = "http://";
+        try (final DatagramSocket datagramSocket = new DatagramSocket()) {
+            datagramSocket.connect(InetAddress.getByName("8.8.8.8"), 12345);
+            url = url + (datagramSocket.getLocalAddress().getHostAddress());
         }catch(Exception e){
-            System.out.print(e.getMessage());
         }
-    }  
-
-
-    public static void create(){
-        //data that we want to store in the QR code  
-        String str= "THE HABIT OF PERSISTENCE IS THE HABIT OF VICTORY.";  
-        //path where we want to get QR Code  
-        String path = "/home/rodriginsky/Desktop/Repos/Parking/Parking/qr.png";  
-        //Encoding charset to be used  
-        String charset = "UTF-8";  
-        // Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();  
-        //generates QR code with Low level(L) error correction capability  
-        // hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);  
-        //invoking the user-defined method that creates the QR code  
+        url = url + ":8080/";
+        return url;
+    }
+    public void generateHostLinkQR(String path){
         try{
-            generateQRcode(str, path, charset, null, 200, 200);//increase or decrease height and width accodingly   
+            saveQRCode(path, getHostLink());
         }catch(Exception e){
-            System.out.print(e.getMessage());
+
         }
-        //prints if the QR code is generated   
-        System.out.println("QR Code created successfully.");  
     }
 
     public void saveQRCode(String path, String qrText){

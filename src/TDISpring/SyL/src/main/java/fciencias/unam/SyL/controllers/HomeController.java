@@ -1,5 +1,6 @@
 package fciencias.unam.SyL.controllers;
 
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.time.format.DateTimeFormatter;
 
@@ -49,6 +50,7 @@ public class HomeController {
     }
     @GetMapping("/")
     public String agregarCarro(Model model){
+        carService.generateHostLinkQR("/home/rodriginsky/Desktop/Repos/Parking/Parking/src/TDISpring/SyL/src/main/resources/static/img/url.png");
         return "carForm";
     }
     
@@ -91,16 +93,7 @@ public class HomeController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        String url = "http://";
-        try{
-            InetAddress myIp = InetAddress.getLocalHost();
-            url = url + myIp.getHostAddress();
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-        }
-        url = url + ":8080/";
-        carService.saveQRCode("/home/rodriginsky/Desktop/Repos/Parking/Parking/url.png", url);
-        return url;
+        
     }
         
 }
