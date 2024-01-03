@@ -40,6 +40,7 @@ public class HomeController {
     @Autowired
     TicketGeneratorService ticketGeneratorService;
 
+
     @GetMapping("/cut")
     @ResponseBody
     public String cut(){
@@ -47,7 +48,7 @@ public class HomeController {
         return "cortado";
     }
     @GetMapping("/")
-    public String agregarCarro(){
+    public String agregarCarro(Model model){
         return "carForm";
     }
     
@@ -90,7 +91,7 @@ public class HomeController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        String url = "";
+        String url = "http://";
         try{
             InetAddress myIp = InetAddress.getLocalHost();
             url = url + myIp.getHostAddress();
@@ -98,6 +99,7 @@ public class HomeController {
             System.out.println(ex.getMessage());
         }
         url = url + ":8080/";
+        carService.saveQRCode("/home/rodriginsky/Desktop/Repos/Parking/Parking/url.png", url);
         return url;
     }
         
