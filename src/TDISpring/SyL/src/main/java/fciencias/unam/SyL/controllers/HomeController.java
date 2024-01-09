@@ -50,7 +50,8 @@ public class HomeController {
     }
     @GetMapping("/")
     public String agregarCarro(Model model){
-        carService.generateHostLinkQR("/home/rodriginsky/Desktop/Repos/Parking/Parking/src/TDISpring/SyL/src/main/resources/static/img/url.png");
+        // carService.generateHostLinkQR("/home/rodriginsky/Desktop/Repos/Parking/Parking/src/TDISpring/SyL/src/main/resources/static/img/url.png");
+        model.addAttribute("autolink", carService.getHostLink());
         return "carForm";
     }
     
@@ -93,7 +94,7 @@ public class HomeController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        
+        return "";
     }
         
 }

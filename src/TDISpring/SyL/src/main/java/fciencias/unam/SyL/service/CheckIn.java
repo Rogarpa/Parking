@@ -40,7 +40,6 @@ public class CheckIn{
             System.out.print("Impresora no encontrada");
             return "";
         }
-        printerService.printString("POS-80", ticket);
         EscPos escpos;
         try {
             escpos = new EscPos(new PrinterOutputStream(printService));

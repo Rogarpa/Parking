@@ -71,8 +71,8 @@
                             <div th:attr="style=${verifiedCar}?'':'display: none'">
                                 <p  th:text="${verifiedCar}?:''">Confirmacion</p>
                             </div>
-                            <img src="/img/url.png" alt="QR Code for remote page">
-                            <a href="127.0.1.1:8080/" th:text="${autolink}?:''">https://127.0.1.1:8080/</a>
+                            <!-- <img src="/img/url.png" alt="QR Code for remote page"> -->
+                            <p th:text="${autolink}?:''"></p>
                         </div>
 
                     </div>
